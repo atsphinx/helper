@@ -1,8 +1,8 @@
-from atsphinx.helpers.decorators import only
+from atsphinx.helpers.decorators import setup_only
 
 extensions = []
 
 
-@only(builders=["linkcheck"])
+@setup_only(builders=["linkcheck"])
 def setup(app):
     pass

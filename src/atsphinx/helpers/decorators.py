@@ -10,15 +10,15 @@ from sphinx.util.logging import getLogger
 Logger = getLogger(__name__)
 
 
-def only(
+def setup_only(
     *,
     builders: Optional[List[str]] = None,
     formats: Optional[List[str]] = None,
     loglevel: int = logging.WARN,
 ):
-    """Restict extension by builder types or formats.
+    """Restict extension workings by builder types or formats.
 
-    This is decorator function.
+    This is decorator function for setup of extension.
     You can message for users that this extension is created for specify builders.
 
     .. code-block:: python
@@ -26,7 +26,7 @@ def only(
        :name: your_extension.py
 
        # Display warning when user runs by not 'html' builders.
-       @only(builder=["html"])
+       @setup_only(builder=["html"])
        def setup(app):
            ...
 
