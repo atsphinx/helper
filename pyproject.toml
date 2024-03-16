@@ -31,7 +31,7 @@ classifiers = [
 Home = "https://github.com/atsphinx/helpers"
 Repository = "https://github.com/atsphinx/helpers"
 Issues = "https://github.com/atsphinx/helpers/issues"
-Changelog = "https://github.com/atsphinx/helpers/blob/main/CHANGES.rst"
+Changelog = "https://github.com/atsphinx/helpers/blob/main/CHANGELOG.md"
 
 [build-system]
 requires = ["hatchling"]

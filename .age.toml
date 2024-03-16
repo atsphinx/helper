@@ -9,3 +9,11 @@ replace = "version = \"{{new_version}}\""
 path = "src/atsphinx/helpers/__init__.py"
 search = "__version__ = \"{{current_version}}\""
 replace = "__version__ = \"{{new_version}}\""
+
+[[files]]
+path = "CHANGELOG.md"
+search = "# Changelog"
+replace = """
+# Changelog
+
+## v{{new_version}}"""
