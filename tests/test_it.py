@@ -7,6 +7,7 @@ from sphinx.testing.util import SphinxTestApp
 
 
 @pytest.mark.sphinx("html")
-def test__it(app: SphinxTestApp, status: StringIO, warning: StringIO):
-    """Test to pass."""
+def test__print_warning(app: SphinxTestApp, warning: StringIO):
     app.build()
+    expected = "is not supported 'html' builder."
+    assert expected in warning.getvalue()
