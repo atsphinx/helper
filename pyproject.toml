@@ -1,6 +1,6 @@
 [project]
 name = "atsphinx-helpers"
-version = "0.0.0"
+version = "0.1.0"
 description = "Helper for my Sphinx extension"
 authors = [
     { name = "Kazuya Takei", email = "myself@attakei.net" }
