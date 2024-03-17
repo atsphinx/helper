@@ -2,7 +2,7 @@
 
 import functools
 import logging
-from typing import Callable, List, Optional, Union
+from typing import Any, Callable, List, Optional, Union
 
 from sphinx.application import Sphinx
 from sphinx.util.logging import getLogger
@@ -58,6 +58,64 @@ def setup_only(
         def __only(app: Sphinx):
             app.connect("builder-inited", _restrict_builder)
             func(app)
+
+        return __only
+
+    return _only
+
+
+def emit_only(
+    *,
+    builders: Optional[List[str]] = None,
+    formats: Optional[List[str]] = None,
+    loglevel: int = logging.INFO,
+):
+    """Restict event handler workings by builder types or formats.
+
+    This is decorator function for core-event handler of extension.
+    You can skip procedure of extension when builder or format is not specify types.
+
+    .. code-block:: python
+       :caption: your_extension.py
+       :name: your_extension.py
+
+       # Proc does not run when user runs by not 'html' builders.
+       @emit_only(builder=["html"])
+       def event_handler(app):
+           ...
+
+
+       def setup(app):
+           app.connect("builder-inited", event_handler)
+           ...
+
+    :params builders: List of builder names for restrict target.
+    :params formats: List of format types for restrict target.
+    """
+    if builders is None and formats is None:
+        Logger.log(
+            loglevel,
+            "To use @emit_only, you should set argument builders or formats at least.",
+        )
+
+    def _only(func: Callable[[Sphinx, ...], Any]):
+        logger = getLogger(func.__module__ or "confpy")
+
+        @functools.wraps(func)
+        def __only(app: Sphinx, *args, **kwargs) -> Any:
+            if builders and app.builder.name not in builders:
+                logger.log(
+                    loglevel,
+                    f"{func.__name__} is not supported '{app.builder.name}' builder.",
+                )
+                return
+            if formats and app.builder.format not in formats:
+                logger.log(
+                    loglevel,
+                    f"{func.__name__} is not supported '{app.builder.format}' format.",
+                )
+                return
+            return func(app, *args, **kwargs)
 
         return __only
 
