@@ -55,9 +55,9 @@ def setup_only(
                 )
 
         @functools.wraps(func)
-        def __only(app: Sphinx):
+        def __only(app: Sphinx) -> Optional[dict]:
             app.connect("builder-inited", _restrict_builder)
-            func(app)
+            return func(app)
 
         return __only
 
