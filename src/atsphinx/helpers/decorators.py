@@ -69,6 +69,7 @@ def emit_only(
     builders: Optional[List[str]] = None,
     formats: Optional[List[str]] = None,
     loglevel: int = logging.INFO,
+    return_alt: Any = None,
 ):
     """Restict event handler workings by builder types or formats.
 
@@ -91,6 +92,7 @@ def emit_only(
 
     :params builders: List of builder names for restrict target.
     :params formats: List of format types for restrict target.
+    :params return_alt: Return value if guard is worked.
     """
     if builders is None and formats is None:
         Logger.log(
@@ -108,13 +110,13 @@ def emit_only(
                     loglevel,
                     f"{func.__name__} is not supported '{app.builder.name}' builder.",
                 )
-                return
+                return return_alt
             if formats and app.builder.format not in formats:
                 logger.log(
                     loglevel,
                     f"{func.__name__} is not supported '{app.builder.format}' format.",
                 )
-                return
+                return return_alt
             return func(app, *args, **kwargs)
 
         return __only
