@@ -32,6 +32,7 @@ def setup_only(
 
     :params builders: List of builder names for restrict target.
     :params formats: List of format types for restrict target.
+    :params loglevel: Level about logger of wrapper function.
     """
     if builders is None and formats is None:
         Logger.log(
@@ -92,6 +93,7 @@ def emit_only(
 
     :params builders: List of builder names for restrict target.
     :params formats: List of format types for restrict target.
+    :params loglevel: Level about logger of wrapper function.
     :params return_alt: Return value if guard is worked.
     """
     if builders is None and formats is None:
