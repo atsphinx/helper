@@ -36,7 +36,7 @@ jobs:
       - uses: ncipollo/release-action@v1
         with:
           artifacts: 'dist/*'
-          bodyFile: 'CHANGESLOG.rst'
+          body: 'Please see [CHANGELOG](https://github.com/atsphinx/helper/blob/main/CHANGELOG.md)'
           draft: false
           name: Release ${{ github.ref_name }}
           tag: ${{ github.ref }}
