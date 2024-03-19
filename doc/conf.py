@@ -1,7 +1,7 @@
-from atsphinx.helpers import __version__
+from atsphinx.helper import __version__
 
 # -- Project information -----------------------------------------------------
-project = "atsphinx-helpers"
+project = "atsphinx-helper"
 copyright = "2024, Kazuya Takei"
 author = "Kazuya Takei"
 release = __version__

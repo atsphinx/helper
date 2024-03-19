@@ -1,4 +1,4 @@
-from atsphinx.helpers.decorators import emit_only
+from atsphinx.helper.decorators import emit_only
 from sphinx.util.logging import getLogger
 
 extensions = []

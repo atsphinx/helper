@@ -1,4 +1,4 @@
-from atsphinx.helpers.decorators import setup_only
+from atsphinx.helper.decorators import setup_only
 
 extensions = []
 

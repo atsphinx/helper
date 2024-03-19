@@ -1,5 +1,5 @@
 [project]
-name = "atsphinx-helpers"
+name = "atsphinx-helper"
 version = "0.1.0"
 description = "Helper for my Sphinx extension"
 authors = [
@@ -28,10 +28,10 @@ classifiers = [
 ]
 
 [project.urls]
-Home = "https://github.com/atsphinx/helpers"
-Repository = "https://github.com/atsphinx/helpers"
-Issues = "https://github.com/atsphinx/helpers/issues"
-Changelog = "https://github.com/atsphinx/helpers/blob/main/CHANGELOG.md"
+Home = "https://github.com/atsphinx/helper"
+Repository = "https://github.com/atsphinx/helper"
+Issues = "https://github.com/atsphinx/helper/issues"
+Changelog = "https://github.com/atsphinx/helper/blob/main/CHANGELOG.md"
 
 [build-system]
 requires = ["hatchling"]
