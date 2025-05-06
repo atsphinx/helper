@@ -59,11 +59,6 @@ test = [
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[tool.rye.scripts]
-setup = {chain = ["setup:sync", "setup:pre-commit"]}
-"setup:sync" = "rye sync --no-lock --all-features"
-"setup:pre-commit" = "pre-commit install"
-
 [tool.ruff.lint]
 select = ["C90", "D", "E", "F", "I", "W"]
 
