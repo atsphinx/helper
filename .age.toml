@@ -6,7 +6,7 @@ search = "version = \"{{current_version}}\""
 replace = "version = \"{{new_version}}\""
 
 [[files]]
-path = "src/atsphinx/helpers/__init__.py"
+path = "src/atsphinx/helper/__init__.py"
 search = "__version__ = \"{{current_version}}\""
 replace = "__version__ = \"{{new_version}}\""
 
@@ -16,4 +16,5 @@ search = "# Changelog"
 replace = """
 # Changelog
 
-## v{{new_version}}"""
+## v{{new_version}} - {{nowFormat.dateISO}} Asia/Tokyo
+"""
