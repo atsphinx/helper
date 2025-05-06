@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.1 - 2025-05-06 Asia/Tokyo
+
+### Misc
+
+- Mark supporting for Python 3.13
+- Update workspace for latest attakei's standard.
+
 ## v0.1.0 - 2024-03-17 JST
 
 First release
