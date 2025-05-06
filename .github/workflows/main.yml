@@ -48,6 +48,7 @@ jobs:
       - name: 'Set up workspace'
         run: |
           uv sync --all-extras --all-groups
+      - name: 'Health check document'
         run: |
           task --yes docs:build-linkcheck docs:build-dirhtml
   build:
