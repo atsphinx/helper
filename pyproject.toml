@@ -33,18 +33,31 @@ Repository = "https://github.com/atsphinx/helper"
 Issues = "https://github.com/atsphinx/helper/issues"
 Changelog = "https://github.com/atsphinx/helper/blob/main/CHANGELOG.md"
 
+[dependency-groups]
+dev = [
+    {include-group = "test"},
+    {include-group = "docs"},
+    "doc8",
+    "esbonio",
+    "mypy",
+    "ruff",
+    "types-docutils>=0.21.0.20241128",
+]
+docs = [
+    "atsphinx-mini18n",
+    "furo",
+    "myst-parser~=2.0.0",
+    "sphinx~=7.2.6",
+    "sphinx-autobuild",
+    "sphinx-intl",
+]
+test = [
+    "pytest",
+]
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
-
-[tool.rye]
-managed = true
-dev-dependencies = [
-    "furo~=2024.1.29",
-    "pytest~=8.0.2",
-    "sphinx~=7.2.6",
-    "myst-parser~=2.0.0",
-]
 
 [tool.rye.scripts]
 setup = {chain = ["setup:sync", "setup:pre-commit"]}
