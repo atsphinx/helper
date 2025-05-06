@@ -102,7 +102,7 @@ def emit_only(
             "To use @emit_only, you should set argument builders or formats at least.",
         )
 
-    def _only(func: Callable[[Sphinx, ...], Any]):
+    def _only(func: Callable[[Sphinx], Any]):
         logger = getLogger(func.__module__ or "confpy")
 
         @functools.wraps(func)
