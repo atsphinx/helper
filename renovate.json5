@@ -6,21 +6,30 @@
   "enabledManagers": [
     "github-actions",
     "mise",
-    "custom.regex",
+    "custom.jsonata",
   ],
   "customManagers": [
     {
-      "customType": "regex",
+      "customType": "jsonata",
+      "fileFormat": "yaml",
       // TODO: Change managerFilePatterns after v40 released.
       "fileMatch": [
         "lefthook.yaml",
+      ],
+      "matchStrings": [
+        "remotes[].{\"depName\": $split(git_url, \"github.com/\")[1], \"currentValue\": ref}"
+      ],
+      "datasourceTemplate": "github-tags",
+    },
+    {
+      "customType": "jsonata",
+      "fileFormat": "yaml",
+      // TODO: Change managerFilePatterns after v40 released.
+      "fileMatch": [
         "Taskfile.yaml",
       ],
       "matchStrings": [
-        // For lefthook
-        "git_url: 'https://github.com/(?<depName>.+?)'\n\s+ref: '(?<currentValue>.+?)'",
-        // For taskfile
-        "taskfile: 'https://github.com/(?<depName>.+?).git//.+?tag=(?<currentValue>.+?)'",
+        "includes[].$each(function ($v) {{\"depName\": $match($v.taskfile, /github.com\\/(.+).git/, 1).groups[0],\"currentValue\": $match($v.taskfile, /\\?tag=(.+)/, 1).groups[0]}})",
       ],
       "datasourceTemplate": "github-tags",
     },
