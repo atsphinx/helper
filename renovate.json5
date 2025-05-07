@@ -1,44 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
+    "config:recommended",
+    "github>attakei/workspace-configs//renovate/lefthook",
+    "github>attakei/workspace-configs//renovate/taskfile",
   ],
   "enabledManagers": [
     "github-actions",
     "mise",
-    "custom.jsonata",
   ],
-  "customManagers": [
-    {
-      "customType": "jsonata",
-      "fileFormat": "yaml",
-      // TODO: Change managerFilePatterns after v40 released.
-      "fileMatch": [
-        "lefthook.yaml",
-      ],
-      "matchStrings": [
-        "remotes[].{\"depName\": $split(git_url, \"github.com/\")[1], \"currentValue\": ref}"
-      ],
-      "datasourceTemplate": "github-tags",
-    },
-    {
-      "customType": "jsonata",
-      "fileFormat": "yaml",
-      // TODO: Change managerFilePatterns after v40 released.
-      "fileMatch": [
-        "Taskfile.yaml",
-      ],
-      "matchStrings": [
-        "includes[].$each(function ($v) {{\"depName\": $match($v.taskfile, /github.com\\/(.+).git/, 1).groups[0],\"currentValue\": $match($v.taskfile, /\\?tag=(.+)/, 1).groups[0]}})",
-      ],
-      "datasourceTemplate": "github-tags",
-    },
-  ],
-  "packageRules": [
-    {
-      "groupName": "workspace-configs",
-      "matchDatasources": ["github-tags"],
-      "matchDepNames": "attakei/workspace-configs",
-    }
-  ]
 }
