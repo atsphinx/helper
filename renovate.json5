@@ -14,19 +14,12 @@
       // TODO: Change managerFilePatterns after v40 released.
       "fileMatch": [
         "lefthook.yaml",
-      ],
-      "matchStrings": [
-        "git_url: 'https://github.com/(?<depName>.+?)'\n\s+ref: '(?<currentValue>.+?)'",
-      ],
-      "datasourceTemplate": "github-tags",
-    },
-    {
-      "customType": "regex",
-      // TODO: Change managerFilePatterns after v40 released.
-      "fileMatch": [
         "Taskfile.yaml",
       ],
       "matchStrings": [
+        // For lefthook
+        "git_url: 'https://github.com/(?<depName>.+?)'\n\s+ref: '(?<currentValue>.+?)'",
+        // For taskfile
         "taskfile: 'https://github.com/(?<depName>.+?).git//.+?tag=(?<currentValue>.+?)'",
       ],
       "datasourceTemplate": "github-tags",
