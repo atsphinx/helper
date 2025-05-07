@@ -9,5 +9,6 @@
   "enabledManagers": [
     "github-actions",
     "mise",
+    "custom.jsonata",
   ],
 }
