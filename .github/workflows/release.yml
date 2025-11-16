@@ -76,7 +76,7 @@ jobs:
         run: |
           task --yes docs:build-dirhtml
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: doc/_build/dirhtml
       - name: Deploy to GitHub Pages
