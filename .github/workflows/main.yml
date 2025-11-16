@@ -8,6 +8,8 @@ on:
       - '**'
   pull_request:
   workflow_dispatch:
+  schedule:
+    - cron: '0 18 * * FRI'
 
 env:
   UV_NO_SYNC: 1
@@ -18,7 +20,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: 'jdx/mise-action@v2'
+      - uses: aquaproj/aqua-installer@11dd79b4e498d471a9385aa9fb7f62bb5f52a73c # v4.0.4
+        with:
+          aqua_version: v2.43.1
       - name: Set up workspace
         run: |
           uv sync --all-extras --all-groups
@@ -30,13 +34,24 @@ jobs:
     strategy:
       matrix:
         python-version: ['3.9', '3.10', '3.11', '3.12', '3.13']
+        workspace: ['locked', 'latest']
+      max-parallel: 4
     steps:
       - uses: actions/checkout@v5
-      - uses: 'jdx/mise-action@v2'
+      - uses: aquaproj/aqua-installer@11dd79b4e498d471a9385aa9fb7f62bb5f52a73c # v4.0.4
+        with:
+          aqua_version: v2.43.1
       - name: 'Set up workspace'
         run: |
           echo '${{ matrix.python-version }}' > .python-version
-          uv sync --all-extras --all-groups
+          case '${{ matrix.workspace }}' in
+            locked)
+              uv sync --all-extras --all-groups --frozen
+              ;;
+            latest)
+              uv sync --all-extras --all-groups --upgrade
+              ;;
+          esac
       - name: 'Run tests'
         run: |
           uv run pytest
@@ -44,7 +59,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: 'jdx/mise-action@v2'
+      - uses: aquaproj/aqua-installer@11dd79b4e498d471a9385aa9fb7f62bb5f52a73c # v4.0.4
+        with:
+          aqua_version: v2.43.1
       - name: 'Set up workspace'
         run: |
           uv sync --all-extras --all-groups
@@ -55,7 +72,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: 'jdx/mise-action@v2'
+      - uses: aquaproj/aqua-installer@11dd79b4e498d471a9385aa9fb7f62bb5f52a73c # v4.0.4
+        with:
+          aqua_version: v2.43.1
       - name: 'Build package'
         run: |
           uv build

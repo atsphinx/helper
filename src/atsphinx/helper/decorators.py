@@ -110,13 +110,13 @@ def emit_only(
             if builders and app.builder.name not in builders:
                 logger.log(
                     loglevel,
-                    f"{func.__name__} is not supported '{app.builder.name}' builder.",
+                    f"{func.__name__} is not supported '{app.builder.name}' builder.",  # type: ignore[unresolve-dattributes]
                 )
                 return return_alt
             if formats and app.builder.format not in formats:
                 logger.log(
                     loglevel,
-                    f"{func.__name__} is not supported '{app.builder.format}' format.",
+                    f"{func.__name__} is not supported '{app.builder.format}' format.",  # type: ignore[unresolve-dattributes]
                 )
                 return return_alt
             return func(app, *args, **kwargs)
