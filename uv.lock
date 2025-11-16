@@ -53,6 +53,7 @@ dev = [
     { name = "sphinx-intl" },
     { name = "ty" },
     { name = "types-docutils" },
+    { name = "typing-extensions" },
 ]
 docs = [
     { name = "atsphinx-mini18n" },
@@ -83,6 +84,7 @@ dev = [
     { name = "sphinx-intl" },
     { name = "ty", specifier = ">=0.0.1a26" },
     { name = "types-docutils", specifier = ">=0.21.0.20241128" },
+    { name = "typing-extensions", specifier = ">=4.13.2" },
 ]
 docs = [
     { name = "atsphinx-mini18n" },
