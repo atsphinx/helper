@@ -60,9 +60,8 @@ class BaseConfig:
     """Prefix for configuration key."""
 
     @classmethod
-    def make(cls, config: Config) -> Self:
-        """Create an instance of the configuration class."""
-        print(fields(cls))
+    def from_sphinx(cls, config: Config) -> Self:
+        """Create an instance of the configuration class from Sphinx cnfiguration."""
         return cls(
             **{
                 field.name: getattr(config, f"{cls.PREFIX}{field.name}")

@@ -20,6 +20,6 @@ class _DemoConfig(tst.BaseConfig):
 
 @pytest.mark.sphinx("html", testroot="with-conf")
 def test_demo_config_from_sphinx(app: SphinxTestApp):
-    config = _DemoConfig.make(app.config)
+    config = _DemoConfig.from_sphinx(app.config)
     assert config.host == "localhost"
     assert config.port == 8000
