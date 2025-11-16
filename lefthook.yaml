@@ -23,8 +23,9 @@ pre-commit:
             run: '{run_python} ruff check --fix {staged_files}'
             stage_fixed: true
   commands:
-    mypy:
+    ty:
       glob: '*.py'
       exclude:
         - '**/conf.py'
-      run: '{run_python} mypy {staged_files}'
+      run: '{run_python} ty check {staged_files}'
+      stage_fixed: true

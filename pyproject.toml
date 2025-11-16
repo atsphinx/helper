@@ -40,8 +40,8 @@ dev = [
     {include-group = "docs"},
     "doc8",
     "esbonio",
-    "mypy",
     "ruff",
+    "ty>=0.0.1a26",
     "types-docutils>=0.21.0.20241128",
 ]
 docs = [
