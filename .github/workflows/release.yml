@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: 'jdx/mise-action@v2'
+      - uses: 'jdx/mise-action@v3'
       - name: 'Build package'
         run: |
           uv build
@@ -68,7 +68,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v5
-      - uses: 'jdx/mise-action@v2'
+      - uses: 'jdx/mise-action@v3'
       - name: 'Set up workspace'
         run: |
           uv sync --all-extras --all-groups
