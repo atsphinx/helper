@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.9"
 resolution-markers = [
     "python_full_version >= '3.11'",
@@ -76,10 +76,10 @@ dev = [
     { name = "esbonio" },
     { name = "furo" },
     { name = "mypy" },
-    { name = "myst-parser", specifier = "~=2.0.0" },
+    { name = "myst-parser", specifier = ">=2.0.0" },
     { name = "pytest" },
     { name = "ruff" },
-    { name = "sphinx", specifier = "~=7.2.6" },
+    { name = "sphinx", specifier = ">=7.2.6" },
     { name = "sphinx-autobuild" },
     { name = "sphinx-intl" },
     { name = "types-docutils", specifier = ">=0.21.0.20241128" },
@@ -87,8 +87,8 @@ dev = [
 docs = [
     { name = "atsphinx-mini18n" },
     { name = "furo" },
-    { name = "myst-parser", specifier = "~=2.0.0" },
-    { name = "sphinx", specifier = "~=7.2.6" },
+    { name = "myst-parser", specifier = ">=2.0.0" },
+    { name = "sphinx", specifier = ">=7.2.6" },
     { name = "sphinx-autobuild" },
     { name = "sphinx-intl" },
 ]
