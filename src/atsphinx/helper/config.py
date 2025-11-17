@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, fields
+import logging
+from dataclasses import _MISSING_TYPE, dataclass, fields
 from typing import TYPE_CHECKING, ClassVar
 
 if TYPE_CHECKING:
+    from sphinx.application import Sphinx
     from sphinx.config import Config
     from typing_extensions import Self
 
@@ -41,12 +43,11 @@ class BaseConfig:
             PREFIX = "my_"
 
             # Define properties that is named with removing prefix.
-            my_config: str
-            other: int
+            host: str
+            port: int
 
         def setup(app: Sphinx):
-            app.add_config_value("my_config", "", "env")
-            app.add_config_value("my_other_config", 1, "env")
+            ExtensionConfig.register(app)
             app.connect("html-page-context", pass_config)
 
         def pass_config(app, pagename, template, context, doctree):
@@ -68,3 +69,34 @@ class BaseConfig:
                 for field in fields(cls)
             }
         )
+
+    @classmethod
+    def register(cls, app: Sphinx) -> None:
+        """Register fields as Sphinx configuration values.
+
+        This method is useful to manage exention configuration by only class itself.
+
+        .. todo:: This does not support 'description' of newer Sphinx.
+        """
+        for field in fields(cls):
+            # Resolve 'default' argument
+            default_value = field.default
+            if not isinstance(field.default, _MISSING_TYPE):
+                pass
+            elif isinstance(field.default_factory, _MISSING_TYPE):
+                default_value = None
+            else:
+                default_value = field.default_factory()
+            # Resolve 'rebuild' argument
+            rebuild_value = "env"
+            if "sphinx_rebuild" in field.metadata:
+                value = field.metadata["sphinx_rebuild"]
+                if isinstance(value, bool) or isinstance(value, str):
+                    rebuild_value = value
+                else:
+                    logging.warning(
+                        f"'sphinx_rebuild' only supports bool or str: {type(value)}"
+                    )
+            app.add_config_value(
+                cls.PREFIX + field.name, default_value, rebuild_value, field.type
+            )
