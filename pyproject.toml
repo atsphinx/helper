@@ -6,7 +6,8 @@ authors = [
     { name = "Kazuya Takei", email = "myself@attakei.net" }
 ]
 dependencies = [
-    "sphinx",
+    "sphinx>=8.0.0",
+    "typing-extensions~=4.0.0",
 ]
 readme = "README.rst"
 requires-python = ">= 3.10"
@@ -44,7 +45,6 @@ dev = [
     "ruff",
     "ty>=0.0.1a26",
     "types-docutils>=0.21.0.20241128",
-    "typing-extensions>=4.13.2",
 ]
 docs = [
     "atsphinx-mini18n",
