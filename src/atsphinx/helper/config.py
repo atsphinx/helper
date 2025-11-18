@@ -6,6 +6,8 @@ import logging
 from dataclasses import _MISSING_TYPE, dataclass, fields
 from typing import TYPE_CHECKING, ClassVar
 
+from sphinx.config import _ConfigRebuild
+
 if TYPE_CHECKING:
     from sphinx.application import Sphinx
     from sphinx.config import Config
@@ -91,11 +93,11 @@ class BaseConfig:
             rebuild_value = "env"
             if "sphinx_rebuild" in field.metadata:
                 value = field.metadata["sphinx_rebuild"]
-                if isinstance(value, bool) or isinstance(value, str):
+                if value in _ConfigRebuild.__args__:
                     rebuild_value = value
                 else:
                     logging.warning(
-                        f"'sphinx_rebuild' only supports bool or str: {type(value)}"
+                        "'sphinx_rebuild' only supports specified literals."
                     )
             # Resolve 'description' argument
             description_value = ""
@@ -105,6 +107,6 @@ class BaseConfig:
                 cls.PREFIX + field.name,
                 default_value,
                 rebuild_value,
-                field.type,
+                field.type,  # type: ignore[invalid-argument-type] - Sphinx application checks it.
                 description_value,
             )
