@@ -2,13 +2,15 @@ version: '3'
 
 includes:
   docs:
-    taskfile: 'https://github.com/attakei/workspace-configs.git//projects/sphinx-doc/Taskfile.yaml?tag=v0.7.0'
+    taskfile: 'https://github.com/attakei/workspace-configs.git//projects/sphinx-doc/Taskfile.yaml?tag=v0.7.1'
     vars:
       RUN_PYTHON: 'uv run'
       SPHINX_ROOT_DIR: 'doc'
       SPHINX_SOURCE_DIR: ''
       SPHINX_OUTPUT_DIR: '_build'
       SPHINX_DEFAULT_BUILDER: 'dirhtml'
+      SPHINX_APIDOC_PACKAGE_PATH: '../src/atsphinx'
+      SPHINX_APIDOC_EXTRA_OPTIONS: '--implicit-namespaces'
 
 tasks:
   setup:
@@ -21,6 +23,7 @@ tasks:
     cmds:
       - 'lefthook run pre-commit --all-files'
       - 'uv run pytest'
+      - task: 'docs:apidoc'
       - task: 'docs:intl'
       - task: 'docs:build-linkcheck'
       - task: 'docs:build-dirhtml'

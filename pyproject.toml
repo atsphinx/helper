@@ -9,7 +9,7 @@ dependencies = [
     "sphinx",
 ]
 readme = "README.rst"
-requires-python = ">= 3.9"
+requires-python = ">= 3.10"
 license = "Apache-2.0"
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -20,11 +20,11 @@ classifiers = [
     "Operating System :: OS Independent",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Topic :: Documentation :: Sphinx",
 ]
 
@@ -40,6 +40,7 @@ dev = [
     {include-group = "docs"},
     "doc8",
     "esbonio",
+    "sphinx-autobuild",
     "ruff",
     "ty>=0.0.1a26",
     "types-docutils>=0.21.0.20241128",
@@ -49,8 +50,8 @@ docs = [
     "atsphinx-mini18n",
     "furo",
     "myst-parser>=2.0.0",
-    "sphinx>=7.2.6",
-    "sphinx-autobuild",
+    "sphinx>=8.0.0",
+    "sphinx-design>=0.6.1",
     "sphinx-intl",
 ]
 test = [
