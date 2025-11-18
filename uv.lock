@@ -58,7 +58,6 @@ docs = [
     { name = "furo" },
     { name = "myst-parser" },
     { name = "sphinx" },
-    { name = "sphinx-autobuild" },
     { name = "sphinx-intl" },
 ]
 test = [
@@ -88,7 +87,6 @@ docs = [
     { name = "furo" },
     { name = "myst-parser", specifier = ">=2.0.0" },
     { name = "sphinx", specifier = ">=8.0.0" },
-    { name = "sphinx-autobuild" },
     { name = "sphinx-intl" },
 ]
 test = [{ name = "pytest" }]
