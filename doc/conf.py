@@ -7,7 +7,13 @@ author = "Kazuya Takei"
 release = __version__
 
 # -- General configuration ---------------------------------------------------
-extensions = ["myst_parser"]
+extensions = [
+    # Bundled extensions
+    "sphinx.ext.autodoc",
+    # Third-party extensions
+    "myst_parser",
+    "sphinx_design",
+]
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
