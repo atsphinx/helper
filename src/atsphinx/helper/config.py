@@ -97,6 +97,14 @@ class BaseConfig:
                     logging.warning(
                         f"'sphinx_rebuild' only supports bool or str: {type(value)}"
                     )
+            # Resolve 'description' argument
+            description_value = ""
+            if "sphinx_description" in field.metadata:
+                description_value = str(field.metadata["sphinx_description"])
             app.add_config_value(
-                cls.PREFIX + field.name, default_value, rebuild_value, field.type
+                cls.PREFIX + field.name,
+                default_value,
+                rebuild_value,
+                field.type,
+                description_value,
             )
