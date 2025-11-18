@@ -6,3 +6,4 @@ Home
    :maxdepth: 1
 
    changelog
+   api
